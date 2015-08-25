@@ -22,9 +22,11 @@
   };
 
   var Snake = Snk.Snake = function (board) {
-    this.dir = "N";
-    this.segments = [new Coord(6, 6)]; //Change to center of board?
+    this.dir = "S";
+    this.board = board;
     this.turning = false;
+    var center = new Coord(Math.floor(board.size / 2), Math.floor(board.size / 2));
+    this.segments = [center];
   };
 
   Snake.DIFFS = {
@@ -36,8 +38,11 @@
 
   Snake.prototype.move = function () {
     this.segments.push(this.head().plus(Snake.DIFFS[this.dir]));
-    this.segments.shift();
     this.turning = false;
+    this.segments.shift();
+    if (!this.isValid()) {
+      this.segments = [];
+    }
   };
 
   Snake.prototype.head = function () {
@@ -51,6 +56,22 @@
       this.turning = true;
       this.dir = dir;
     }
+  };
+
+  Snake.prototype.isValid = function () {
+    var head = this.head();
+
+    if (!this.board.validPos(this.head())) {
+      return false;
+    }
+
+    for (var i = 0; i < this.segments.length - 1; i++) {
+      if (this.segments[i].equals(head)) {
+        return false;
+      }
+    }
+
+    return true;
   };
 
   var Board = Snk.Board = function (size) {
