@@ -9,6 +9,8 @@
     this.board = new Snk.Board(20);
     this.hiScore = 0;
     this.speed = 110;
+    this.inPlay = false;
+    this.paused = false;
 
     var that = this;
     $(window).on("keydown", this.handleKeyEvent.bind(this));
@@ -45,13 +47,23 @@
     window.clearInterval(this.intervalID);
     this.board = new Snk.Board(20);
     this.setupGrid();
+    this.inPlay = true;
     this.intervalID = window.setInterval(
       this.step.bind(this),
       this.speed
     );
   };
 
+  View.prototype.resumeGame = function () {
+
+  };
+
+  View.prototype.paseGame = function () {
+
+  };
+
   View.prototype.promptNewGame = function () {
+    this.inPlay = false;
     this.$el.empty();
     this.$el.append("<h2>You died! ... Hit space to play again!</h2>")
   };
@@ -59,13 +71,19 @@
 
   View.prototype.handleKeyEvent = function (e) {
     if (e.keyCode === 32) {
-      if (!this.intervalID) {
+      if (!this.inPlay) {
         this.startGame();
       } else {
-        this.delay();
+        if (this.paused) {
+          this.pauseGame();
+        } else {
+          this.resumeGame();
+        }
       }
     } else if (View.DIRS[e.keyCode]) {
       this.board.snake.turn(View.DIRS[e.keyCode]);
+    } else if (e.keyCode === 80) {
+      //PAUSE
     }
   };
 
