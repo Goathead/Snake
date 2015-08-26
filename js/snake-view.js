@@ -62,13 +62,11 @@
   };
 
 
-  View.MOVE_TIME = 120;
+  View.MOVE_TIME = 200;
   View.KEYS = {
     37: "W",
     38: "N",
     39: "E",
     40: "S"
   };
-
-
 })();

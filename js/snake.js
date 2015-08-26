@@ -155,8 +155,4 @@
     }
     return grid;
   };
-
-  Board.EMPTY = ".";
-  Snake.SYM = "S";
-
 })();
