@@ -9,7 +9,8 @@ li {
   width: 20px;
   height: 20px;
   background-color: yellow;
-  border: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 ul {

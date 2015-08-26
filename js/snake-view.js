@@ -56,11 +56,10 @@
 
   View.prototype.renderSquares = function (coords, className) {
     this.$li.filter("." + className).removeClass();
-
     coords.forEach(function(coord) {
       var flatCoord = (coord.r * this.board.size) + coord.c;
       this.$li.eq(flatCoord).addClass(className);
-    });
+    }.bind(this));
   };
 
 
