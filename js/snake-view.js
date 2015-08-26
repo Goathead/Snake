@@ -16,17 +16,15 @@
     $(window).on("keydown", this.handleKeyEvent.bind(this));
     $(window).ready(function () {
       $("#easy").click(function () {
-        // window.clearInterval(that.intervalID);
         that.speed = 200;
         that.startGame();
       });
       $("#med").click(function () {
-        // window.clearInterval(that.intervalID);
         that.speed = 110;
         that.startGame();
       });
       $("#hard").click(function () {
-        that.speed = 50;
+        that.speed = 60;
         that.startGame();
       });
     });
@@ -55,17 +53,24 @@
   };
 
   View.prototype.resumeGame = function () {
-
+    $("body").removeClass("paused");
+    this.paused = false;
+    this.intervalID = window.setInterval(
+      this.step.bind(this),
+      this.speed
+    );
   };
 
-  View.prototype.paseGame = function () {
-
+  View.prototype.pauseGame = function () {
+    $("body").addClass("paused");
+    this.paused = true;
+    window.clearInterval(this.intervalID);
   };
 
   View.prototype.promptNewGame = function () {
     this.inPlay = false;
     this.$el.empty();
-    this.$el.append("<h2>You died! ... Hit space to play again!</h2>")
+    this.$el.append("<h2>You died! ... Hit space to play again!</h2>");
   };
 
 
@@ -75,9 +80,9 @@
         this.startGame();
       } else {
         if (this.paused) {
-          this.pauseGame();
-        } else {
           this.resumeGame();
+        } else {
+          this.pauseGame();
         }
       }
     } else if (View.DIRS[e.keyCode]) {

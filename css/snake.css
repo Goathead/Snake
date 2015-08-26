@@ -32,6 +32,7 @@ ul {
 }
 
 li.snake {
+  z-index: 1;
   background-color: green;
   /*background-image: url("../images/shrimp.jpg")*/
 }
@@ -44,6 +45,22 @@ ul:after {
   content: "";
   clear: both;
   display: block;
+}
+
+.button {
+  height: 50px;
+  width: 76px;
+  font-size: 16px;
+}
+
+.paused {
+  -webkit-filter: grayscale(100%);
+  background-color: rgba(0,0,0,0.7);
+}
+
+.paused li.snake {
+  -webkit-filter: grayscale(100%);
+  background-color: rgba(0,0,0,0.7);
 }
 
 /*Scoreboard*/
