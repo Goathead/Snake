@@ -6,14 +6,28 @@
 
   var View = Snk.View = function ($el) {
     this.$el = $el;
-    this.board = new Snk.Board(24);
-    this.setupGrid();
-    this.interval = window.setInterval(
-      this.step.bind(this),
-      View.MOVE_TIME
-    );
+    this.board = new Snk.Board(20);
+    this.hiScore = 0;
+    this.speed = 110;
 
+    var that = this;
     $(window).on("keydown", this.handleKeyEvent.bind(this));
+    $(window).ready(function () {
+      $("#easy").click(function () {
+        // window.clearInterval(that.intervalID);
+        that.speed = 200;
+        that.startGame();
+      });
+      $("#med").click(function () {
+        // window.clearInterval(that.intervalID);
+        that.speed = 110;
+        that.startGame();
+      });
+      $("#hard").click(function () {
+        that.speed = 50;
+        that.startGame();
+      });
+    });
   };
 
 
@@ -22,19 +36,41 @@
       this.board.snake.move();
       this.render();
     } else {
-      alert("You lose!");
-      window.clearInterval(this.interval);
+      window.clearInterval(this.intervalID);
+      this.promptNewGame();
     }
+  };
+
+  View.prototype.startGame = function () {
+    window.clearInterval(this.intervalID);
+    this.board = new Snk.Board(20);
+    this.setupGrid();
+    this.intervalID = window.setInterval(
+      this.step.bind(this),
+      this.speed
+    );
+  };
+
+  View.prototype.promptNewGame = function () {
+    this.$el.empty();
+    this.$el.append("<h2>You died! ... Hit space to play again!</h2>")
   };
 
 
   View.prototype.handleKeyEvent = function (e) {
-    if (View.KEYS[e.keyCode]) {
-      this.board.snake.turn(View.KEYS[e.keyCode]);
+    if (e.keyCode === 32) {
+      if (!this.intervalID) {
+        this.startGame();
+      } else {
+        this.delay();
+      }
+    } else if (View.DIRS[e.keyCode]) {
+      this.board.snake.turn(View.DIRS[e.keyCode]);
     }
   };
 
   View.prototype.setupGrid = function () {
+    this.$el.empty();
     var html = "";
 
     for (var i = 0; i < this.board.size; i++) {
@@ -49,8 +85,19 @@
   };
 
   View.prototype.render = function () {
+    this.updateScore(this.board.snake.score);
     this.renderSquares(this.board.snake.segments, "snake");
     this.renderSquares([this.board.apple.pos], "apple");
+  };
+
+  View.prototype.updateScore = function (score) {
+    $(".points").empty();
+    $(".points").append(score);
+    if (score > this.hiScore) {
+      $(".hiscore").empty();
+      this.hiScore = score;
+      $(".hiscore").append(this.hiScore);
+    }
   };
 
   View.prototype.renderSquares = function (coords, className) {
@@ -61,12 +108,11 @@
     }.bind(this));
   };
 
-
-  View.MOVE_TIME = 200;
-  View.KEYS = {
+  View.DIRS = {
     37: "W",
     38: "N",
     39: "E",
-    40: "S"
+    40: "S",
   };
+
 })();

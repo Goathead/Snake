@@ -28,6 +28,7 @@
     var center = new Coord(Math.floor(board.size / 2), Math.floor(board.size / 2));
     this.segments = [center];
     this.growth = 0;
+    this.score = 0;
   };
 
   Snake.DIFFS = {
@@ -75,13 +76,11 @@
     if (!this.board.validPos(this.head())) {
       return false;
     }
-
     for (var i = 0; i < this.segments.length - 1; i++) {
       if (this.segments[i].equals(head)) {
         return false;
       }
     }
-
     return true;
   };
 
@@ -98,6 +97,7 @@
 
   Snake.prototype.eatApple = function () {
     if (this.head().equals(this.board.apple.pos)) {
+      this.score += 100;
       this.growth += 2;
       return true;
     } else {

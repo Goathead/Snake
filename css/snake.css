@@ -1,26 +1,28 @@
 body {
-  font-family: Comic Sans MS;
+  font-family: Impact;
   text-align: center;
   font-weight: bold;
 }
 
 li {
   float: left;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border-left: 1px solid black;
   border-bottom: 1px solid black;
 }
 
 figure {
+  width: 500px;
+  height: 500px;
   display: inline-block;
   border: 5px solid black;
 }
 
 figure.scoreboard {
   position: fixed;
-  height: 400px;
-  width: 250px;
+  height: 500px;
+  width: 280px;
 }
 
 ul {
@@ -31,6 +33,7 @@ ul {
 
 li.snake {
   background-color: green;
+  /*background-image: url("../images/shrimp.jpg")*/
 }
 
 li.apple {
@@ -41,4 +44,11 @@ ul:after {
   content: "";
   clear: both;
   display: block;
+}
+
+/*Scoreboard*/
+
+.points-container, .hiscore-container {
+  padding: 20px;
+
 }

@@ -6,13 +6,35 @@
     <link rel="stylesheet" href="../css/snake.css" type="text/css">
   </head>
   <body>
-    <h1>Snake</h1>
-    <figure class="snake-game"></figure>
-    <figure class="scoreboard"><h3>Score</h3></figure>
+    <h1>_S_N_A_K_E_</h1>
+
+    <figure class="snake-game"><h2>Hit space to play!</h2></figure>
+
+    <figure class="scoreboard">
+      <h2>Score</h2>
+      <div class="points-container">
+        Current Score: <span class="points">0</span>
+      </div>
+      <div class="hiscore-container">
+        Highest Score: <span class="hiscore">0</span>
+      </div>
+      <h2>Controls</h2>
+      <div class="arrow-keys-graphic">
+        <img src="../images/arrowkeys.gif"/>
+      </div>
+      <h2>Difficulty</h2>
+      <div class="difficulty-btns">
+        <button id="easy" type="button">Easy Game</button>
+        <button id="med" type="button">Medium Game</button>
+        <button id="hard" type="button">Hard Game</button>
+      </div>
+    </figure>
+
+
+
     <script src="../js/jquery-1.11.3.js"></script>
     <script src="../js/snake.js"></script>
     <script src="../js/snake-view.js"></script>
-
     <script>
       $(function () {
         new Snk.View($(".snake-game"));
