@@ -49,9 +49,8 @@
   };
 
   View.prototype.render = function () {
-    // debugger;
-    // this.$el.html(this.board.render());
     this.renderSquares(this.board.snake.segments, "snake");
+    this.renderSquares([this.board.apple.pos], "apple");
   };
 
   View.prototype.renderSquares = function (coords, className) {

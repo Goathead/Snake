@@ -13,13 +13,23 @@ li {
   border-bottom: 1px solid black;
 }
 
+figure {
+  display: inline-block;
+  border: 5px solid black;
+}
+
 ul {
   list-style: none;
   margin: 0;
+  padding-left: 0;
 }
 
 li.snake {
   background-color: green;
+}
+
+li.apple {
+  background-color: red;
 }
 
 ul:after {

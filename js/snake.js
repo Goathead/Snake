@@ -27,6 +27,7 @@
     this.turning = false;
     var center = new Coord(Math.floor(board.size / 2), Math.floor(board.size / 2));
     this.segments = [center];
+    this.growth = 0;
   };
 
   Snake.DIFFS = {
@@ -39,7 +40,17 @@
   Snake.prototype.move = function () {
     this.segments.push(this.head().plus(Snake.DIFFS[this.dir]));
     this.turning = false;
-    this.segments.shift();
+
+    if (this.eatApple()) {
+      this.board.apple.newApple();
+    }
+
+    if (this.growth > 0) {
+      this.growth -= 1;
+    } else {
+      this.segments.shift();
+    }
+
     if (!this.isValid()) {
       this.segments = [];
     }
@@ -74,9 +85,46 @@
     return true;
   };
 
+  Snake.prototype.currentPos = function (ary) {
+    var current = false;
+    this.segments.forEach(function (seg) {
+      if (seg.r === ary[0] && seg.c === ary[1]) {
+        current = true;
+        return current;
+      }
+    });
+    return current;
+  };
+
+  Snake.prototype.eatApple = function () {
+    if (this.head().equals(this.board.apple.pos)) {
+      this.growth += 2;
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  var Apple = Snk.Apple = function (board) {
+    this.board = board;
+    this.newApple();
+  };
+
+  Apple.prototype.newApple = function () {
+    var r = Math.floor(Math.random() * this.board.size);
+    var c = Math.floor(Math.random() * this.board.size);
+    while (this.board.snake.currentPos([r, c])) {
+      r = Math.floor(Math.random() * this.board.size);
+      c = Math.floor(Math.random() * this.board.size);
+    }
+    this.pos = new Coord(r, c);
+  };
+
+
   var Board = Snk.Board = function (size) {
     this.size = size;
     this.snake = new Snake(this);
+    this.apple = new Apple(this);
   };
 
   Board.prototype.render = function () {
