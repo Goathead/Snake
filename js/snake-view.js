@@ -121,6 +121,7 @@
     this.updateScore(this.board.snake.score);
     this.renderSquares(this.board.snake.segments, "snake");
     this.renderSquares([this.board.apple.pos], "apple");
+    this.renderSquares([this.board.snake.head()], "head");
   };
 
   View.prototype.updateScore = function (score) {

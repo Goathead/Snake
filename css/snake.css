@@ -2,24 +2,26 @@ body {
   font-family: Impact;
   text-align: center;
   font-weight: bold;
+  background-color: #A9F5F2;
 }
 
 li {
   float: left;
   width: 24px;
   height: 24px;
-  border-left: 1px solid black;
-  border-bottom: 1px solid black;
 }
 
-figure {
+figure.snake-game {
   width: 500px;
   height: 500px;
   display: inline-block;
   border: 5px solid black;
+  background-image: url("../images/water.gif");
 }
 
 figure.scoreboard {
+  display: inline-block;
+  border: 5px solid black;
   position: fixed;
   height: 500px;
   width: 280px;
@@ -33,12 +35,15 @@ ul {
 
 li.snake {
   z-index: 1;
-  background-color: green;
-  /*background-image: url("../images/shrimp.jpg")*/
+  background-image: url("../images/eel_body.png");
+}
+
+li.head {
+  background-image: url("../images/eel_head.png");
 }
 
 li.apple {
-  background-color: red;
+  background-image: url("../images/fish.png");
 }
 
 ul:after {
@@ -58,14 +63,8 @@ ul:after {
   background-color: rgba(0,0,0,0.7);
 }
 
-.paused li.snake {
-  -webkit-filter: grayscale(100%);
-  background-color: rgba(0,0,0,0.7);
-}
-
 /*Scoreboard*/
 
 .points-container, .hiscore-container {
   padding: 20px;
-
 }
