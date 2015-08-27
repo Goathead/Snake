@@ -55,6 +55,7 @@
   View.prototype.resumeGame = function () {
     $("body").removeClass("paused");
     this.paused = false;
+    this.toggleBtns();
     this.intervalID = window.setInterval(
       this.step.bind(this),
       this.speed
@@ -64,7 +65,16 @@
   View.prototype.pauseGame = function () {
     $("body").addClass("paused");
     this.paused = true;
+    this.toggleBtns();
     window.clearInterval(this.intervalID);
+  };
+
+  View.prototype.toggleBtns = function () {
+    if (this.paused) {
+      $(".button").prop("disabled", true);
+    } else {
+      $(".button").prop("disabled", false);
+    }
   };
 
   View.prototype.promptNewGame = function () {
