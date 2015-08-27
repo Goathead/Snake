@@ -30,7 +30,6 @@
     });
   };
 
-
   View.prototype.step = function () {
     if (this.board.snake.segments.length > 0) {
       this.board.snake.move();
@@ -83,7 +82,6 @@
     this.$el.append("<h2>You died! ... Hit space to play again!</h2>");
   };
 
-
   View.prototype.handleKeyEvent = function (e) {
     if (e.keyCode === 32) {
       if (!this.inPlay) {
@@ -97,8 +95,6 @@
       }
     } else if (View.DIRS[e.keyCode]) {
       this.board.snake.turn(View.DIRS[e.keyCode]);
-    } else if (e.keyCode === 80) {
-      //PAUSE
     }
   };
 
