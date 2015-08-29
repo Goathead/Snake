@@ -59,6 +59,7 @@
 
   Snake.prototype.head = function () {
     return this.segments[this.segments.length - 1];
+    debugger;
   };
 
   Snake.prototype.turn = function (dir) {
@@ -119,7 +120,6 @@
     }
     this.pos = new Coord(r, c);
   };
-
 
   var Board = Snk.Board = function (size) {
     this.size = size;

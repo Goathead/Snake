@@ -117,7 +117,9 @@
     this.updateScore(this.board.snake.score);
     this.renderSquares(this.board.snake.segments, "snake");
     this.renderSquares([this.board.apple.pos], "apple");
-    this.renderSquares([this.board.snake.head()], "head");
+    if (this.inPlay) {
+      this.renderSquares([this.board.snake.head()], "head");
+    }
   };
 
   View.prototype.updateScore = function (score) {
@@ -133,7 +135,9 @@
   View.prototype.renderSquares = function (coords, className) {
     this.$li.filter("." + className).removeClass();
     coords.forEach(function(coord) {
-      var flatCoord = (coord.r * this.board.size) + coord.c;
+      if (this.board.snake.head()) {
+        var flatCoord = (coord.r * this.board.size) + coord.c;
+      }
       this.$li.eq(flatCoord).addClass(className);
     }.bind(this));
   };

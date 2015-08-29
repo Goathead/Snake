@@ -2,13 +2,19 @@ body {
   font-family: Impact;
   text-align: center;
   font-weight: bold;
+  overflow: hidden;
   background-color: #A9F5F2;
+  background-image: url("../images/ocean.jpg")
 }
 
 li {
   float: left;
   width: 24px;
   height: 24px;
+}
+
+figure {
+  margin:15px;
 }
 
 figure.snake-game {
