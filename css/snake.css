@@ -8,6 +8,10 @@ body {
   background-image: url("../images/ocean.jpg")
 }
 
+.title {
+	padding-left: 300px;
+}
+
 li {
   float: left;
   width: 24px;
