@@ -6,7 +6,7 @@
 
   var View = Snk.View = function ($el) {
     this.$el = $el;
-    this.board = new Snk.Board(20);
+    this.board = new Snk.Board(22);
     if (localStorage.getItem("EelHiScore")) {
       this.hiScore = localStorage.getItem("EelHiScore");
     } else {
