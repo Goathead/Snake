@@ -46,11 +46,11 @@ ul {
 
 li.snake {
   z-index: 1;
-  background-image: url("../images/eel_body.png");
+  background-image: url("../images/eel_body_2.png");
 }
 
 li.head {
-  background-image: url("../images/eel_head.png");
+  background-image: url("../images/eel_head_2.png");
 }
 
 li.apple {
