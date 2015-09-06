@@ -6,8 +6,13 @@
 
   var View = Snk.View = function ($el) {
     this.$el = $el;
-    this.board = new Snk.Board(20);
-    this.hiScore = 0;
+    this.board = new Snk.Board(22);
+    if (localStorage.getItem("EelHiScore")) {
+      this.hiScore = localStorage.getItem("EelHiScore");
+    } else {
+      this.hiScore = 0;
+    }
+    $(".hiscore").append(this.hiScore);
     this.speed = 110;
     this.inPlay = false;
     this.paused = false;
@@ -125,8 +130,11 @@
   View.prototype.updateScore = function (score) {
     $(".points").empty();
     $(".points").append(score);
+    $(".hiscore").empty();
+    $(".hiscore").append(this.hiScore);
     if (score > this.hiScore) {
       $(".hiscore").empty();
+      localStorage.setItem("EelHiScore", score);
       this.hiScore = score;
       $(".hiscore").append(this.hiScore);
     }

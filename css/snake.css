@@ -23,8 +23,8 @@ figure {
 }
 
 figure.snake-game {
-  width: 500px;
-  height: 500px;
+	height: 480px;
+	width: 480px;
   display: inline-block;
   border: 5px solid black;
   background-image: url("../images/water.gif");
@@ -34,7 +34,7 @@ figure.scoreboard {
   display: inline-block;
   border: 5px solid black;
   position: fixed;
-  height: 500px;
+  height: 480px;
   width: 280px;
 }
 
@@ -46,11 +46,11 @@ ul {
 
 li.snake {
   z-index: 1;
-  background-image: url("../images/eel_body.png");
+  background-image: url("../images/eel_body_2.png");
 }
 
 li.head {
-  background-image: url("../images/eel_head.png");
+  background-image: url("../images/eel_head_2.png");
 }
 
 li.apple {
@@ -77,5 +77,5 @@ ul:after {
 /*Scoreboard*/
 
 .points-container, .hiscore-container {
-  padding: 20px;
+  padding: 15px;
 }
