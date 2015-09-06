@@ -1,8 +1,7 @@
 body {
 	padding-right: 300px;
-  font-family: Impact;
+  font-family: Montserrat;
   text-align: center;
-  font-weight: bold;
   overflow: hidden;
   background-color: #A9F5F2;
   background-image: url("../images/ocean.jpg")
@@ -10,6 +9,7 @@ body {
 
 .title {
 	padding-left: 300px;
+	font-size: 36px;
 }
 
 li {
@@ -28,6 +28,10 @@ figure.snake-game {
   display: inline-block;
   border: 5px solid black;
   background-image: url("../images/water.gif");
+}
+
+.snake-game > h2 {
+	padding-top: 200px;
 }
 
 figure.scoreboard {
